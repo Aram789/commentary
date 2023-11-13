@@ -11,7 +11,7 @@ class CommentsController extends Controller
 {
     public function index()
     {
-        $comments = Comment::all();
+        $comments = Comment::query()->where('children_id', '=', null)->get();
 
         return view('welcome', compact('comments'));
     }
@@ -21,6 +21,7 @@ class CommentsController extends Controller
         $validated = $request->validated();
 
         $comments = Comment::query()->create($validated);
-        return redirect()->route('home.index' ,compact('comments'));
+        return redirect()->route('home.index', compact('comments'));
+
     }
 }
