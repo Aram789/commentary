@@ -1,1 +1,12 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+body{
+    background: #161515;
+}
+.fixed{
+    position: sticky;
+    top: 0;
+    background: aliceblue;
+    z-index: 5;
+    filter: drop-shadow(2px 4px 6px black);
+}

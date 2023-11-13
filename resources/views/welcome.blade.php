@@ -10,35 +10,47 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="container">
-        <form action="{{route('home.store')}}" method="post">
-            <div>
-                @csrf
-                <div class="row mt-5">
-                    <div class="col">
-                        <div class="mb-3">
-                            @error('title')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <label for="comment" class="form-label">Commentary</label>
-                            <textarea class="form-control" id="comment" rows="3" name="title"></textarea>
-                        </div>
+<div class="container">
+    <form action="{{route('home.store')}}" method="post">
+        <div>
+            @csrf
+            <div class="p-3 mt-5 fixed d-flex align-items-center rounded">
+                <div class="col">
+                    <div class="mb-3">
+                        @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <label for="comment" class="form-label">Commentary</label>
+                        <textarea class="form-control" id="comment" rows="1" name="title"></textarea>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col text-end">
-                        <button class="btn btn-primary" type="submit">Add</button>
-                    </div>
-                </div>
-                <div class="my-3 gap-2">
-                    @isset($comments)
-                        @foreach($comments as $comment)
-                            @component('components.children-comment-component', ['comment'=> $comment]);@endcomponent
-                        @endforeach
-                    @endisset
+                <div class="col text-end">
+                    <button class="btn btn-primary" type="submit">Add</button>
                 </div>
             </div>
-        </form>
-    </div>
+            <div class="my-3 gap-2">
+                @isset($comments)
+                    @foreach($comments as $comment)
+                        <div class="bg-light rounded">
+                            <div class="bg-light p-3 d-flex align-items-center justify-content-between">
+                                <strong class="fs-4 bg-warning px-1 rounded"> Parent
+                                    comment: {{$comment->title}}</strong>
+                                <div class="text-end">
+                                    <label for="children{{$comment->id}}" class="btn btn-primary">
+                                        Add
+                                        <input type="submit" name="children_id" value="{{$comment->id}}"
+                                               class="btn btn-primary" id="children{{$comment->id}}" hidden>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            @component('components.children-comment-component', ['comment'=> $comment]);@endcomponent
+                        </div>
+                    @endforeach
+                @endisset
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>
