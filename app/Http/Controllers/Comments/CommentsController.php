@@ -11,7 +11,7 @@ class CommentsController extends Controller
 {
     public function index()
     {
-        $comments = Comment::query()->where('children_id', '=', null)->get();
+        $comments = Comment::query()->where('children_id', '=', null)->orderBy('id', 'DESC')->get();
 
         return view('welcome', compact('comments'));
     }
