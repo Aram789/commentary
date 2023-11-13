@@ -14,18 +14,18 @@
     <form action="{{route('home.store')}}" method="post">
         <div>
             @csrf
-            <div class="p-3 mt-5 fixed d-flex align-items-center rounded">
+            <div class="p-3 mt-5 fixed d-flex align-items-center">
                 <div class="col">
                     <div class="mb-3">
                         @error('title')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <label for="comment" class="form-label">Commentary</label>
-                        <textarea class="form-control" id="comment" rows="1" name="title"></textarea>
+                        <textarea class="form-control" id="comment" rows="1" name="title" autofocus></textarea>
                     </div>
                 </div>
                 <div class="col text-end">
-                    <button class="btn btn-primary" type="submit">Add</button>
+                    <button class="btn btn-primary" type="submit">Add Comment</button>
                 </div>
             </div>
             <div class="my-3 gap-2">
@@ -37,7 +37,7 @@
                                     comment: {{$comment->title}}</strong>
                                 <div class="text-end">
                                     <label for="children{{$comment->id}}" class="btn btn-primary">
-                                        Add
+                                        Add Comment
                                         <input type="submit" name="children_id" value="{{$comment->id}}"
                                                class="btn btn-primary" id="children{{$comment->id}}" hidden>
                                     </label>
