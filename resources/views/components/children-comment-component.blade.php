@@ -1,7 +1,7 @@
 <div class="container">
     <div class="my-3 gap-2 p-2">
-        @if(count($comment->childrens))
-            @foreach($comment->childrens as $comment)
+        @if(count($comment->children))
+            @foreach($comment->children as $comment)
                 <div class="d-flex align-items-center justify-content-between my-2 bg-light rounded mx-4">
                     <strong class="d-block px-2 fs-6"> Children comment: {{$comment->title}}</strong>
                     <label for="children{{$comment->id}}" class="btn btn-success">

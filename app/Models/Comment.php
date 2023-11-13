@@ -8,7 +8,7 @@ class Comment extends Model
 {
     protected $fillable = ['title', 'children_id'];
 
-    public function childrens(): HasMany
+    public function children(): HasMany
     {
         return $this->hasMany(Comment::class, 'children_id', 'id');
     }
